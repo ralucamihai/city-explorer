@@ -1,0 +1,498 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap");
+
+/* ---------- Tokeni: paleta junglei ---------- */
+:root {
+    --canopy: #0b3d2e;     /* verde adânc de pădure */
+    --fern: #1f9d55;       /* frunză */
+    --lime: #b7f34d;       /* lăstar nou */
+    --toucan: #ff8a1f;     /* portocaliu de tucan */
+    --hibiscus: #ff3d8b;   /* floare tropicală */
+    --banana: #ffd23f;     /* galben banană */
+    --lagoon: #19b5c9;     /* apă de râu */
+    --leaf-bg: #effaf1;
+    --ink: #10281f;
+    --ink-soft: #3b5348;
+    --white: #ffffff;
+
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --font-body: "Figtree", "Segoe UI", Arial, sans-serif;
+
+    /* formă de frunză: colțuri opuse rotunjite */
+    --leaf: 30px 6px 30px 6px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--leaf-bg);
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+/* Lumină filtrată prin frunziș: pete de culoare care plutesc lent */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(183, 243, 77, 0.35), transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(255, 210, 63, 0.25), transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(25, 181, 201, 0.22), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(255, 61, 139, 0.12), transparent 30%);
+    animation: canopy-drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes canopy-drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(4%, -3%) scale(1.12); }
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--canopy);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6em;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; }
+h3 { font-size: 1.3rem; font-weight: 600; }
+
+/* frunză care se leagănă lângă fiecare titlu de secțiune */
+section > h2::after {
+    content: "🌿";
+    display: inline-block;
+    margin-left: 0.3em;
+    transform-origin: 50% 90%;
+    animation: sway 3.5s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-12deg); }
+    50%      { transform: rotate(12deg); }
+}
+
+p { max-width: 65ch; }
+
+/* ---------- Antet compact ---------- */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px clamp(14px, 3vw, 32px);
+    background: var(--canopy);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+/* margine de frunze sub antet */
+.site-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 9px;
+    background: radial-gradient(circle at 9px 0, var(--canopy) 8px, transparent 9px) 0 0 / 18px 9px repeat-x;
+    pointer-events: none;
+}
+
+/* 🦜 papagalul de lângă nume: sare și își dă capul într-o parte și alta */
+.site-header > :first-child::before {
+    content: "🦜 ";
+    display: inline-block;
+    transform-origin: 50% 90%;
+    animation: perch 4s ease-in-out infinite;
+}
+
+@keyframes perch {
+    0%, 55%, 100% { transform: translateY(0) rotate(0); }
+    60%           { transform: translateY(-5px) rotate(-16deg); }
+    66%           { transform: translateY(0) rotate(10deg); }
+    72%           { transform: translateY(-4px) rotate(-10deg); }
+    78%           { transform: translateY(0) rotate(0); }
+}
+
+/* 🐘🐘🐘 trei elefanți merg în șir, fiecare ținând coada celui din față cu trompa */
+.site-header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -240px;
+    bottom: -9px;
+    width: 227px;
+    height: 44px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 330 64'%3E%3Cstyle%3E.l%7Bfill:%237f95ad;stroke:%2334475c;stroke-width:1.6;transform-box:fill-box;transform-origin:50%25 0;animation:w .8s ease-in-out infinite%7D.m%7Banimation-delay:-.4s%7D%40keyframes w%7B0%25,100%25%7Btransform:rotate(14deg)%7D50%25%7Btransform:rotate(-14deg)%7D%7D.b%7Bfill:%2393a8be;stroke:%2334475c;stroke-width:1.8;stroke-linejoin:round%7D.e%7Bfill:%23b3c4d6;stroke:%2334475c;stroke-width:1.6%7D.tl%7Bfill:none;stroke:%2334475c;stroke-width:1.8;stroke-linecap:round%7D.to%7Bfill:none;stroke:%2334475c;stroke-width:9;stroke-linecap:round%7D.ti%7Bfill:none;stroke:%2393a8be;stroke-width:6;stroke-linecap:round%7D%3C/style%3E%3Cg transform='translate(216 0)'%3E%0A%3Crect class='l' x='27' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l m' x='39' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l m' x='58' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l' x='70' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Cpath class='tl' d='M23 30 q-10 2 -8 13'/%3E%3Ccircle cx='15' cy='44' r='2.8' fill='%2334475c'/%3E%0A%3Cellipse class='b' cx='52' cy='32' rx='30' ry='18'/%3E%0A%3Ccircle class='b' cx='82' cy='26' r='13'/%3E%0A%3Cellipse class='e' cx='74' cy='28' rx='8' ry='12'/%3E%0A%3Ccircle cx='87' cy='22' r='1.9' fill='%231b2733'/%3E%0A%3Cpath class='to' d='M93 29 C107 30 109 13 101 8'/%3E%3Cpath class='ti' d='M93 29 C107 30 109 13 101 8'/%3E%3C/g%3E%3Cg transform='translate(108 0)'%3E%0A%3Crect class='l' x='27' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l m' x='39' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l m' x='58' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l' x='70' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Cpath class='tl' d='M23 30 q-10 2 -8 13'/%3E%3Ccircle cx='15' cy='44' r='2.8' fill='%2334475c'/%3E%0A%3Cellipse class='b' cx='52' cy='32' rx='30' ry='18'/%3E%0A%3Ccircle class='b' cx='82' cy='26' r='13'/%3E%0A%3Cellipse class='e' cx='74' cy='28' rx='8' ry='12'/%3E%0A%3Ccircle cx='87' cy='22' r='1.9' fill='%231b2733'/%3E%0A%3Cpath class='to' d='M93 31 C99 50 117 54 124 41'/%3E%3Cpath class='ti' d='M93 31 C99 50 117 54 124 41'/%3E%3C/g%3E%3Cg transform='translate(0 0)'%3E%0A%3Crect class='l' x='27' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l m' x='39' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l m' x='58' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Crect class='l' x='70' y='38' width='8' height='18' rx='3.5'/%3E%0A%3Cpath class='tl' d='M23 30 q-10 2 -8 13'/%3E%3Ccircle cx='15' cy='44' r='2.8' fill='%2334475c'/%3E%0A%3Cellipse class='b' cx='52' cy='32' rx='30' ry='18'/%3E%0A%3Ccircle class='b' cx='82' cy='26' r='13'/%3E%0A%3Cellipse class='e' cx='74' cy='28' rx='8' ry='12'/%3E%0A%3Ccircle cx='87' cy='22' r='1.9' fill='%231b2733'/%3E%0A%3Cpath class='to' d='M93 31 C99 50 117 54 124 41'/%3E%3Cpath class='ti' d='M93 31 C99 50 117 54 124 41'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+    pointer-events: none;
+    animation: elephants-march 34s linear infinite, trudge 0.8s ease-in-out infinite;
+}
+
+@keyframes elephants-march {
+    from { left: -240px; }
+    to   { left: 100%; }
+}
+
+@keyframes trudge {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -2px; }
+}
+
+.site-header > :first-child,
+.site-header h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--white);
+}
+
+.site-header a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.menu a {
+    --btn: var(--fern);
+    --btn-shadow: #0d6a37;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    color: var(--white);
+    background: var(--btn);
+    box-shadow: 0 4px 0 var(--btn-shadow);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, filter 0.2s;
+}
+
+.menu a:nth-child(2) {
+    --btn: var(--toucan);
+    --btn-shadow: #b35a05;
+    color: var(--canopy);
+}
+
+.menu a:nth-child(3) {
+    --btn: var(--hibiscus);
+    --btn-shadow: #b01c5c;
+}
+
+/* iconița fiecărui buton */
+.menu a::before {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.menu a:nth-child(1)::before { content: "🗺️"; }
+.menu a:nth-child(2)::before { content: "🧭"; }
+.menu a:nth-child(3)::before { content: "🌟"; }
+
+.menu a:hover {
+    transform: translateY(-3px) rotate(-2deg);
+    box-shadow: 0 7px 0 var(--btn-shadow), 0 14px 18px -8px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+.menu a:nth-child(even):hover {
+    transform: translateY(-3px) rotate(2deg);
+}
+
+.menu a:hover::before {
+    transform: scale(1.35) rotate(-18deg);
+}
+
+/* apăsat: butonul se lasă în jos */
+.menu a:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--btn-shadow);
+}
+
+/* pagina curentă (dacă linkul are aria-current sau clasa active) */
+.menu a[aria-current="page"],
+.menu a.active {
+    outline: 3px solid var(--lime);
+    outline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--banana);
+    outline-offset: 3px;
+}
+
+/* ---------- Conținut ---------- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 48px);
+}
+
+section {
+    margin-bottom: clamp(48px, 8vw, 96px);
+}
+
+/* ---------- Carduri: fiecare cu culoarea ei tropicală ---------- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    --c: var(--fern);
+    position: relative;
+    padding: 30px 24px 24px;
+    background: var(--white);
+    border: 2px solid color-mix(in srgb, var(--c) 35%, white);
+    border-radius: var(--leaf);
+    overflow: hidden;
+    cursor: default;
+    /* o singură secvență de intrare: cardurile apar pe rând, ca ieșite din frunziș */
+    animation: grow-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) backwards;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:nth-child(4n + 2) { --c: var(--toucan); }
+.card:nth-child(4n + 3) { --c: var(--hibiscus); }
+.card:nth-child(4n + 4) { --c: var(--lagoon); }
+
+.card:nth-child(2) { animation-delay: 0.12s; }
+.card:nth-child(3) { animation-delay: 0.24s; }
+.card:nth-child(4) { animation-delay: 0.36s; }
+.card:nth-child(n + 5) { animation-delay: 0.48s; }
+
+@keyframes grow-in {
+    from { opacity: 0; transform: translateY(40px) scale(0.85) rotate(-3deg); }
+    to   { opacity: 1; transform: none; }
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 8px;
+    background: var(--c);
+    transition: height 0.3s ease;
+}
+
+.card:hover {
+    background: color-mix(in srgb, var(--c) 10%, white);
+    border-color: var(--c);
+    box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--c) 60%, transparent);
+    transform: translateY(-8px) rotate(-1.2deg);
+}
+
+/* cardurile pare se înclină în partea opusă, ca frunzele în vânt */
+.card:nth-child(even):hover {
+    transform: translateY(-8px) rotate(1.2deg);
+}
+
+.card:hover::before {
+    height: 14px;
+}
+
+/* ---------- Destinația evidențiată: soarele din jungla ---------- */
+.card.featured,
+.featured {
+    --c: var(--banana);
+    background: linear-gradient(135deg, var(--canopy), var(--fern), var(--canopy));
+    background-size: 220% 220%;
+    border: 2px solid var(--banana);
+    color: #e3f6e8;
+    animation:
+        grow-in 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) backwards,
+        jungle-flow 9s ease-in-out 0.7s infinite alternate,
+        sun-pulse 3s ease-in-out 0.7s infinite;
+}
+
+.featured h2,
+.featured h3 {
+    color: var(--white);
+}
+
+.featured::before {
+    height: 8px;
+    background: linear-gradient(90deg, var(--banana), var(--toucan), var(--hibiscus), var(--banana));
+    background-size: 200% 100%;
+    animation: ribbon 4s linear infinite;
+}
+
+.card.featured:hover {
+    background: linear-gradient(135deg, var(--canopy), var(--fern), var(--canopy));
+    background-size: 220% 220%;
+    border-color: var(--lime);
+}
+
+@keyframes jungle-flow {
+    from { background-position: 0% 50%; }
+    to   { background-position: 100% 50%; }
+}
+
+@keyframes sun-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0.55); }
+    50%      { box-shadow: 0 0 0 14px rgba(255, 210, 63, 0); }
+}
+
+@keyframes ribbon {
+    to { background-position: 200% 0; }
+}
+
+@media (min-width: 760px) {
+    .featured {
+        grid-column: span 2;
+        padding: 42px 36px 36px;
+    }
+}
+
+/* ---------- Formular ---------- */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 520px;
+    padding: clamp(22px, 4vw, 38px);
+    background: var(--white);
+    border: 2px solid var(--lime);
+    border-radius: var(--leaf);
+    box-shadow: 8px 8px 0 var(--fern);
+}
+
+label {
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--canopy);
+    font-size: 0.95rem;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--ink);
+    background: var(--leaf-bg);
+    border: 2px solid #cfe8d6;
+    border-radius: 10px;
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input:hover,
+select:hover {
+    border-color: var(--fern);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--toucan);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(255, 138, 31, 0.25);
+    transform: translateX(4px);
+}
+
+button {
+    margin-top: 28px;
+    padding: 14px 20px;
+    font: inherit;
+    font-weight: 800;
+    color: var(--canopy);
+    background: linear-gradient(90deg, var(--banana), var(--toucan));
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, filter 0.2s;
+}
+
+button:hover {
+    animation: boing 0.6s ease;
+    box-shadow: 0 8px 18px -6px rgba(255, 138, 31, 0.8);
+    filter: saturate(1.2);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+@keyframes boing {
+    0%   { transform: scale(1, 1); }
+    30%  { transform: scale(1.06, 0.92); }
+    55%  { transform: scale(0.97, 1.06) translateY(-4px); }
+    100% { transform: scale(1, 1); }
+}
+
+/* ---------- Subsol ---------- */
+.site-footer {
+    margin-top: 40px;
+    padding: 28px 20px;
+    text-align: center;
+    background: var(--canopy);
+    color: #a9d6b8;
+    font-size: 0.95rem;
+}
+
+.site-footer::before {
+    content: "🌴 🌿 🦜 🌿 🌴";
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 0.3em;
+    animation: sway 5s ease-in-out infinite;
+}
+
+.site-footer a {
+    color: var(--lime);
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 600px) {
+    .site-header {
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* animația din interiorul SVG nu poate fi oprită din exterior, deci ascundem elefanții */
+@media (prefers-reduced-motion: reduce) {
+    .site-header::before {
+        display: none;
+    }
+}
